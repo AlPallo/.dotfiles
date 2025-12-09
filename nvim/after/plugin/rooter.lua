@@ -1,30 +1,30 @@
-local config = { patterns = { ".git" } }
+local rooter_augroup = vim.api.nvim_create_augroup("MyProjectRooter", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = rooter_augroup,
 	callback = function()
-		if vim.g["Telescope#rooter#enabled"] ~= true then
+		local root_names = { ".git", "Makefile", "package.json" }
+		local bufnr = vim.api.nvim_get_current_buf()
+		local current_file = vim.api.nvim_buf_get_name(bufnr)
+		local buftype = vim.bo.buftype
+		local filetype = vim.bo.filetype
+		if buftype ~= "" or filetype == "TelescopePrompt" or current_file == "" then
 			return
 		end
-		vim.schedule(function()
-			if vim.bo.filetype == "TelescopePrompt" then
-				if vim.g["Telescope#rooter#oldpwd"] == nil then
-					vim.g["Telescope#rooter#oldpwd"] = vim.uv.cwd()
-				end
-				local rootdir = vim.fs.dirname(vim.fs.find(config.patterns, { upward = true })[1])
-				if rootdir ~= nil then
-					vim.g["Telescope#rooter#newroot"] = rootdir
-					vim.api.nvim_set_current_dir(rootdir)
-				end
+		local root_file = vim.fs.find(root_names, { path = current_file, upward = true })[1]
+		if root_file then
+			local root_dir = vim.fs.dirname(root_file)
+			if root_dir ~= vim.fn.getcwd() then
+				vim.cmd.cd(root_dir)
+				vim.notify("Root changed to: " .. root_dir, vim.log.levels.INFO) -- Using vim.notify for clarity
 			end
-		end)
+		end
 	end,
 })
 
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
+	group = rooter_augroup,
 	callback = function()
-		if vim.g["Telescope#rooter#enabled"] ~= true then
-			return
-		end
 		vim.schedule(function()
 			if vim.g["Telescope#rooter#newroot"] == nil and vim.g["Telescope#rooter#oldpwd"] ~= nil then
 				vim.api.nvim_set_current_dir(vim.g["Telescope#rooter#oldpwd"])

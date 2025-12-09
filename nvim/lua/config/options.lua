@@ -15,6 +15,7 @@ local options = {
 	smartcase = true,
 	winborder = "rounded",
 	termguicolors = true,
+	scrolloff = 5,
 }
 
 vim.opt.shortmess:remove("S")

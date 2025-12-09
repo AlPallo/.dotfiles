@@ -43,3 +43,4 @@ end
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", l("J"), "mzJ`z")
+vim.keymap.set("n", "G", "Gzz")
