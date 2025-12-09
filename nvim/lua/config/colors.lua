@@ -1,0 +1,7 @@
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#171717" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "#808080" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { bg = "#3c3c3c" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { bg = "#3c3c3c" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { bg = "#3c3c3c" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { bg = "#3c3c3c" })
