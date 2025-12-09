@@ -1,3 +1,15 @@
+local orig_virt_text_handler = vim.diagnostic.handlers.virtual_text
+
+vim.diagnostic.handlers.virtual_text = {
+	show = function(namespace, bufnr, diagnostics, opts)
+		local error_diagnostics = vim.tbl_filter(function(d)
+			return d.severity == vim.diagnostic.severity.ERROR
+		end, diagnostics)
+		orig_virt_text_handler.show(namespace, bufnr, error_diagnostics, opts)
+	end,
+	hide = orig_virt_text_handler.hide,
+}
+
 vim.diagnostic.config({
 	severity_sort = true,
 	float = { border = "rounded", source = "if_many" },

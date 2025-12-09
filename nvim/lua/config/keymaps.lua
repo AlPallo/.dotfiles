@@ -35,3 +35,11 @@ vim.keymap.set(
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR><Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "n", ":set hlsearch<CR>n", { noremap = true, silent = true })
 vim.keymap.set("n", "N", ":set hlsearch<CR>N", { noremap = true, silent = true })
+local leaderkey = "<leader>"
+local l = function(after)
+	return string.format("%s%s", leaderkey, after)
+end
+-- keeps jumps centered
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", l("J"), "mzJ`z")
