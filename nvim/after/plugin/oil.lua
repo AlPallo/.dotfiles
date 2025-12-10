@@ -226,3 +226,16 @@ vim.api.nvim_create_autocmd("BufLeave", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "oil://*",
+	group = vim.api.nvim_create_augroup("OilLspRefresh", { clear = true }),
+	callback = function()
+		vim.defer_fn(function()
+			local clients = vim.lsp.get_clients()
+			if #clients > 0 then
+				vim.cmd("LspRestart")
+			end
+		end, 100)
+	end,
+})

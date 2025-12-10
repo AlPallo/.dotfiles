@@ -45,6 +45,7 @@ return require("lazy").setup({
 			"hrsh7th/nvim-cmp",
 		},
 		run = "cargo build --release",
+		build = "cargo build --release",
 	},
 	{
 		"ibhagwan/fzf-lua",
@@ -63,4 +64,5 @@ return require("lazy").setup({
 	"alexghergh/nvim-tmux-navigation",
 	{ "rmehri01/onenord.nvim", priority = 100, opts = {} },
 	"mbbill/undotree",
+	"neovim/nvim-lspconfig",
 })
