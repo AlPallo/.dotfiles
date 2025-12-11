@@ -55,23 +55,51 @@ vim.keymap.set("x", "D", function()
 end, { silent = true })
 
 vim.keymap.set("n", "<leader>pe", function()
+	local count = vim.v.count == 0 and 1 or vim.v.count
 	local content = vim.fn.getreg("+")
-	if not content or content == "" then
-		print("Clipboard is empty")
+	local content_lines = {}
+	if type(content) == "table" and content[1] ~= nil then
+		content_lines = type(content[1]) == "table" and content[1] or content
+	elseif type(content) == "string" and content ~= "" then
+		content_lines = vim.split(content, "\n")
+	end
+	if #content_lines == 0 then
+		print("Clipboard is empty or could not be read.")
 		return
 	end
-	local clipboard_lines = vim.split(content, "\n")
-	if clipboard_lines[#clipboard_lines] == "" then
-		table.remove(clipboard_lines)
+	if content_lines[#content_lines] == "" then
+		table.remove(content_lines)
 	end
+
 	local r, _ = unpack(vim.api.nvim_win_get_cursor(0))
 	local line_count = vim.api.nvim_buf_line_count(0)
-	for i, clip_line in ipairs(clipboard_lines) do
-		local target_row = r + i - 2
-		if target_row < line_count then
+	local lines_to_process = {}
+	if #content_lines == 1 then
+		for i = 1, count do
+			table.insert(lines_to_process, {
+				buffer_row = r + i - 2,
+				clip_text = content_lines[1],
+			})
+		end
+	else
+		for i, clip_line in ipairs(content_lines) do
+			table.insert(lines_to_process, {
+				buffer_row = r + i - 2,
+				clip_text = clip_line,
+			})
+		end
+	end
+
+	for _, item in ipairs(lines_to_process) do
+		local target_row = item.buffer_row
+		local clip_text = item.clip_text
+
+		if target_row >= 0 and target_row < line_count then
 			local current_line_content = vim.api.nvim_buf_get_lines(0, target_row, target_row + 1, false)[1]
-			local new_content = current_line_content .. clip_line
+			local new_content = current_line_content .. clip_text
 			vim.api.nvim_buf_set_lines(0, target_row, target_row + 1, false, { new_content })
+		else
+			break
 		end
 	end
 end, { desc = "[p]aste to [e]nd of each line" })
