@@ -40,6 +40,12 @@ require("telescope").setup({
 pcall(require("telescope").load_extension, "fzf")
 vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files and directories" })
 vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Telescope find git files" })
+vim.keymap.set("n", "<leader>df", function()
+	builtin.find_files({
+		prompt_title = "Dotfiles",
+		cwd = "~/.dotfiles",
+	})
+end, { desc = "Telescope find dotfiles" })
 vim.keymap.set("n", "<leader>of", builtin.oldfiles, { desc = "Telescope previous buffers" })
 vim.keymap.set("n", "<leader>ps", function()
 	local input = vim.fn.input("Grep > ")

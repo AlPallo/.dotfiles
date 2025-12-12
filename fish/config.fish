@@ -36,10 +36,11 @@ if status is-interactive
   set -U fish_color_valid_path --underline
 
   # Vars
-  set -gx ANSIBLE_VAULT_PASSWORD_FILE "$HOME/.ansible-vault.key"
-  set -gx EDITOR nvim
-  set -x MANPAGER "nvim +Man!"
-  set -gx PGPASSFILE "$HOME/.pgpass"
+  set -Ux ANSIBLE_VAULT_PASSWORD_FILE "$HOME/.ansible-vault.key"
+  set -Ux EDITOR nvim
+  set -Ux MANPAGER "nvim +Man!"
+  set -Ux PGPASSFILE "$HOME/.pgpass"
+  set -Ux DOCKER_CONFIG $HOME/.ldocker
   set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
   set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 
