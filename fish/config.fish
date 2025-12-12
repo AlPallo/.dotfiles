@@ -41,7 +41,7 @@ if status is-interactive
   set -x MANPAGER "nvim +Man!"
   set -gx PGPASSFILE "$HOME/.pgpass"
   set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
-  set -U fish_user_paths $HOME/.local $fish_user_paths
+  set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 
   set -U fish_greeting ""
 

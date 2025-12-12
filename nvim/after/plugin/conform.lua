@@ -3,7 +3,10 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "autoflake", "isort", "ruff_format" },
 		javascript = { "prettierd", "prettier" },
-		json = { "prettier" },
+		html = { "prettierd", "prettier" },
+		css = { "prettierd", "prettier" },
+		json = { "prettierd", "prettier" },
+		jinja = { "djlint" },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
@@ -11,6 +14,14 @@ require("conform").setup({
 	formatters = {
 		shfmt = {
 			append_args = { "-i", "2" },
+		},
+		djlint = {
+			command = "djlint",
+			append_args = {
+				"--reformat",
+				"-",
+			},
+			stdin = true,
 		},
 	},
 })
