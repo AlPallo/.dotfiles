@@ -45,6 +45,16 @@ if status is-interactive
 
   set -U fish_greeting ""
 
+  # Tmux ssh auth sock
+  set sock "/tmp/ssh-agent-$USER-screen"
+  if test -n "$SSH_AUTH_SOCK"
+    if test "$SSH_AUTH_SOCK" != "$sock"
+      rm -f "$sock"
+      ln -sf "$SSH_AUTH_SOCK" "$sock"
+      set -gx SSH_AUTH_SOCK "$sock"
+    end
+  end
+
   # Tmux auto-start
   if not set -q TMUX
     if tmux has-session 2>/dev/null
@@ -53,4 +63,6 @@ if status is-interactive
       tmux new -s main
     end
   end
+
+
 end
