@@ -1,9 +1,7 @@
 vim.g.mapleader = " "
+
 local function paste()
-	return {
-		vim.fn.split(vim.fn.getreg(""), "\n"),
-		vim.fn.getregtype(""),
-	}
+	return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
 end
 
 vim.g.clipboard = {
@@ -13,10 +11,8 @@ vim.g.clipboard = {
 		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 	},
 	paste = {
-		--["+"] = paste,
-		--["*"] = paste,
-		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+		["+"] = paste,
+		["*"] = paste,
 	},
 }
 vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
