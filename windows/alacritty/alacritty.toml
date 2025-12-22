@@ -1,12 +1,10 @@
+[general]
+working_directory = "/Users/Alex"
 [window]
-padding = { x = 5, y = 5 }
-position = { x = -5, y = 0 }
-dimensions = { columns = 115, lines = 66 }
-title = ""
+title = "Alacritty"
 dynamic_title = false
 [scrolling]
 history = 100000
-multiplier = 5
 [font]
 normal = { family = "CaskaydiaCove Nerd Font", style = "SemiBold" }
 bold = { family = "CaskaydiaCove Nerd Font", style = "Bold" }
@@ -14,6 +12,8 @@ italic = { family = "CaskaydiaCove Nerd Font", style = "SemiBoldItalic" }
 bold_italic = { family = "CaskaydiaCove Nerd Font", style = "BoldItalic" }
 size = 10
 offset = { x = 1, y = 0 }
+[mouse]
+hide_when_typing = true
 [cursor]
 style = { blinking = "Always" }
 blink_interval = 450
@@ -24,4 +24,3 @@ shell = "pwsh.exe"
 bindings = [
   { key = "V", mods = "Control", action = "Paste" },
   { key = "Return", mode = "Vi", action = "ToggleViMode" },
-]

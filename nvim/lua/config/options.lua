@@ -30,3 +30,10 @@ end
 if not vim.fn.isdirectory(vim.opt.undodir:get()[1]) then
 	vim.fn.mkdir(vim.opt.undodir:get()[1], "p", 0700)
 end
+
+vim.cmd([[
+  cnoreabbrev <expr> diff
+        \ getcmdtype() == ':' && getcmdline() == 'diff'
+        \ ? 'CodeDiff'
+        \ : 'diff'
+]])

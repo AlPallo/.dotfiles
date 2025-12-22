@@ -50,10 +50,7 @@ return require("lazy").setup({
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		---@type fzf-lua.Config|{}
-		---@diagnostics disable: missing-fields
 		opts = {},
-		---@diagnostics enable: missing-fields
 	},
 	"echasnovski/mini.nvim",
 	"stevearc/oil.nvim",
@@ -65,4 +62,18 @@ return require("lazy").setup({
 	{ "rmehri01/onenord.nvim", priority = 100, opts = {} },
 	"mbbill/undotree",
 	"neovim/nvim-lspconfig",
+	{
+		"esmuellert/vscode-diff.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		cmd = "CodeDiff",
+	},
+	{
+		"chrisgrieser/nvim-origami",
+		event = "VeryLazy",
+		opts = {},
+		init = function()
+			vim.opt.foldlevel = 99
+			vim.opt.foldlevelstart = 99
+		end,
+	},
 })
