@@ -1,9 +1,9 @@
-local rooter_augroup = vim.api.nvim_create_augroup("MyProjectRooter", { clear = true })
+local rooter_augroup = vim.api.nvim_create_augroup("Rooter", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = rooter_augroup,
 	callback = function()
-		local root_names = { ".git", "Makefile", "package.json" }
+		local root_names = { ".git" }
 		local bufnr = vim.api.nvim_get_current_buf()
 		local current_file = vim.api.nvim_buf_get_name(bufnr)
 		local buftype = vim.bo.buftype
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			local root_dir = vim.fs.dirname(root_file)
 			if root_dir ~= vim.fn.getcwd() then
 				vim.cmd.cd(root_dir)
-				vim.notify("Root changed to: " .. root_dir, vim.log.levels.INFO) -- Using vim.notify for clarity
+				vim.notify("Root changed to: " .. root_dir, vim.log.levels.INFO)
 			end
 		end
 	end,

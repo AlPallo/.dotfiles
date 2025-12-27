@@ -37,6 +37,7 @@ local leaderkey = "<leader>"
 local l = function(after)
 	return string.format("%s%s", leaderkey, after)
 end
+
 -- keeps jumps centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -49,6 +50,12 @@ end, { silent = true })
 vim.keymap.set("x", "D", function()
 	vim.cmd("normal! $d")
 end, { silent = true })
+
+-- Jump visual lines instead of logical lines
+vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
+vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
+vim.keymap.set("n", "gj", "j", { noremap = true, silent = true })
+vim.keymap.set("n", "gk", "k", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>pe", function()
 	local count = vim.v.count == 0 and 1 or vim.v.count

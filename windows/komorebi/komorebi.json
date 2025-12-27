@@ -3,8 +3,8 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 2,
-  "default_container_padding": 2,
+  "default_workspace_padding": 1,
+  "default_container_padding": 1,
   "border": true,
   "border_width": 3,
   "border_offset": -1,
@@ -44,11 +44,6 @@
     {
       "kind": "Exe",
       "id": "alacritty.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Title",
-      "id": "alacritty",
       "matching_strategy": "Equals"
     }
   ]

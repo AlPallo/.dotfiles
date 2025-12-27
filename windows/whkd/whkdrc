@@ -1,27 +1,20 @@
 .shell powershell
 
 # Reload whkd configuration
-# alt + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
-alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
+alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
 alt + shift + o         : komorebic reload-configuration
-
 alt + i                 : komorebic toggle-shortcuts
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
 alt + a                 : if ($wshell.AppActivate('Alacritty') -eq $False) { start alacritty }
 
-alt + q                 : komorebic close
-alt + m                 : komorebic minimize
-alt + z			: komorebic toggle-monocle
-
 # Focus windows
 alt + h                 : komorebic focus left
 alt + j                 : komorebic focus down
 alt + k                 : komorebic focus up
 alt + l                 : komorebic focus right
-alt + shift + oem_4     : komorebic cycle-focus previous # oem_4 is [
-alt + shift + oem_6     : komorebic cycle-focus next # oem_6 is ]
+alt + z		            	: komorebic toggle-monocle
 
 # Move windows
 alt + shift + h         : komorebic move left
@@ -29,32 +22,17 @@ alt + shift + j         : komorebic move down
 alt + shift + k         : komorebic move up
 alt + shift + l         : komorebic move right
 
-# Stack windows
-alt + left              : komorebic stack left
-alt + down              : komorebic stack down
-alt + up                : komorebic stack up
-alt + right             : komorebic stack right
-alt + oem_1             : komorebic unstack # oem_1 is ;
-alt + oem_4             : komorebic cycle-stack previous # oem_4 is [
-alt + oem_6             : komorebic cycle-stack next # oem_6 is ]
-
-# Resize
-alt + oem_plus          : komorebic resize-axis horizontal increase
-alt + oem_minus         : komorebic resize-axis horizontal decrease
-alt + shift + oem_plus  : komorebic resize-axis vertical increase
-alt + shift + oem_minus : komorebic resize-axis vertical decrease
-
 # Manipulate windows
-alt + t                 : komorebic toggle-float
-alt + shift + f         : komorebic toggle-monocle
+alt + q                 : komorebic close
 
 # Window manager options
 alt + shift + r         : komorebic retile
-alt + p                 : komorebic toggle-pause
 
 # Workspaces
 ctrl + alt + l		: komorebic cycle-workspace next
 ctrl + alt + h		: komorebic cycle-workspace previous
+ctrl + alt + c    : komorebic new-workspace
+ctrl + alt + x    : komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace
 
 # Move windows across workspaces
 alt + shift + 1         : komorebic move-to-workspace 0
