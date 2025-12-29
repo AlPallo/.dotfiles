@@ -1,4 +1,7 @@
 if status is-interactive
+  # Keybinds
+  bind \cy accept-autosuggestion
+
   # Git
   set -U __fish_git_prompt_show_informative_status 1
   set -U __fish_git_prompt_char_stagedstate "+"

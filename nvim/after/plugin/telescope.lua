@@ -16,6 +16,16 @@ require("telescope").setup({
 				preview_height = 0.5, -- preview takes up half of the window height
 			},
 		},
+		mappings = {
+			i = {
+				["<C-j>"] = require("telescope.actions").move_selection_next,
+				["<C-k>"] = require("telescope.actions").move_selection_previous,
+			},
+			n = {
+				["j"] = require("telescope.actions").move_selection_next,
+				["k"] = require("telescope.actions").move_selection_previous,
+			},
+		},
 	},
 	pickers = {
 		find_files = {
@@ -24,6 +34,8 @@ require("telescope").setup({
 				"fdfind",
 				"--exclude",
 				".git",
+				"--exclude",
+				".un~",
 				"--exclude",
 				"venv",
 				"--exclude",

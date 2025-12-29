@@ -16,7 +16,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			local root_dir = vim.fs.dirname(root_file)
 			if root_dir ~= vim.fn.getcwd() then
 				vim.cmd.cd(root_dir)
-				vim.notify("Root changed to: " .. root_dir, vim.log.levels.INFO)
 			end
 		end
 	end,

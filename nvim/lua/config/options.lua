@@ -19,6 +19,7 @@ local options = {
 	swapfile = false,
 	undofile = true,
 	undodir = vim.fn.expand("~/.nvim/undodir"),
+	cmdheight = 0,
 }
 
 vim.opt.shortmess:remove("S")

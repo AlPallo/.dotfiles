@@ -68,12 +68,18 @@ return require("lazy").setup({
 		cmd = "CodeDiff",
 	},
 	{
-		"chrisgrieser/nvim-origami",
-		event = "VeryLazy",
-		opts = {},
-		init = function()
-			vim.opt.foldlevel = 99
-			vim.opt.foldlevelstart = 99
-		end,
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
+	{
+		"jake-stewart/auto-cmdheight.nvim",
+		lazy = false,
+		opts = {
+			max_lines = 5,
+			duration = 2,
+			remove_on_key = true,
+			clear_always = false,
+		},
 	},
 })

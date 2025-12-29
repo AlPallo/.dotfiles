@@ -43,6 +43,27 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", l("J"), "mzJ`z")
 vim.keymap.set("n", "G", "Gzz")
+vim.keymap.set("n", "<C-o>", "<C-o>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true, silent = true })
+
+local function half_page_down()
+	local win = vim.api.nvim_get_current_win()
+	local h = vim.api.nvim_win_get_height(win)
+	local n = math.floor((h - 1) / 2)
+	vim.cmd("normal! " .. n .. "j")
+	vim.cmd("normal! zz")
+end
+
+local function half_page_up()
+	local win = vim.api.nvim_get_current_win()
+	local h = vim.api.nvim_win_get_height(win)
+	local n = math.floor((h - 1) / 2)
+	vim.cmd("normal! " .. n .. "k")
+	vim.cmd("normal! zz")
+end
+
+vim.keymap.set("n", "<C-d>", half_page_down, { silent = true })
+vim.keymap.set("n", "<C-u>", half_page_up, { silent = true })
 
 vim.keymap.set("x", "Y", function()
 	vim.cmd("normal! $y")

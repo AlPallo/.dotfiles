@@ -21,6 +21,7 @@ oil.setup({
 	keymaps = {
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<C-r>"] = { "actions.refresh", mode = "n" },
+		["-"] = { "actions.parent", mode = "n" },
 		["`"] = { "actions.cd", mode = "n" },
 		["gs"] = { "actions.change_sort", mode = "n" },
 		["g."] = { "actions.toggle_hidden", mode = "n" },
