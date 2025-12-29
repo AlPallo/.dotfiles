@@ -7,7 +7,7 @@ alt + i                 : komorebic toggle-shortcuts
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-alt + a                 : if ($wshell.AppActivate('Alacritty') -eq $False) { start alacritty }
+alt + a                 : start alacritty
 
 # Focus windows
 alt + h                 : komorebic focus left
@@ -35,11 +35,5 @@ ctrl + alt + c    : komorebic new-workspace
 ctrl + alt + x    : komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace
 
 # Move windows across workspaces
-alt + shift + 1         : komorebic move-to-workspace 0
-alt + shift + 2         : komorebic move-to-workspace 1
-alt + shift + 3         : komorebic move-to-workspace 2
-alt + shift + 4         : komorebic move-to-workspace 3
-alt + shift + 5         : komorebic move-to-workspace 4
-alt + shift + 6         : komorebic move-to-workspace 5
-alt + shift + 7         : komorebic move-to-workspace 6
-alt + shift + 8         : komorebic move-to-workspace 7
+ctrl + alt + shift + l : pwsh -NoProfile -Command "& python '$env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py' next"
+ctrl + alt+ shift + h : pwsh -NoProfile -Command "& python '$env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py' previous"

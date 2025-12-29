@@ -18,23 +18,23 @@
     {
       "workspaces": [
         {
-          "name": "I",
+          "name": "1",
           "layout": "BSP"
         },
         {
-          "name": "II",
+          "name": "2",
           "layout": "BSP"
         },
         {
-          "name": "III",
+          "name": "3",
           "layout": "BSP"
         },
         {
-          "name": "IV",
+          "name": "4",
           "layout": "BSP"
         },
         {
-          "name": "V",
+          "name": "5",
           "layout": "BSP"
         }
       ]
@@ -45,6 +45,10 @@
       "kind": "Exe",
       "id": "alacritty.exe",
       "matching_strategy": "Equals"
-    }
+    },
+  { "kind": "Exe", "id": "Spotify.exe", "matching_strategy": "Equals" },
+  { "kind": "Exe", "id": "Discord.exe" , "matching_strategy": "Equals" },
+  { "kind": "Exe", "id": "brave.exe" , "matching_strategy": "Equals" },
+  { "kind": "Exe", "id": "ms-teams.exe" , "matching_strategy": "Equals" }
   ]
 }
