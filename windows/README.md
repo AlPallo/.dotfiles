@@ -8,3 +8,8 @@ yasb - Status bar - https://github.com/amnweb/yasb
 thide - Hide taskbar - https://github.com/amnweb/thide
 PowerToys - Command Palette and Keyboard Manager - https://github.com/microsoft/PowerToys
 ShareX - Screen capture and color picker - https://github.com/ShareX/ShareX
+
+Env Vars:
+YASB_CONFIG_HOME = C:\path\to\.dotfiles\windows\yasb
+KOMOREBI_CONFIG_HOME = C:\path\to\.dotfiles\windows\komorebi
+XDG_CONFIG_HOME = C:\path\to\.dotfiles 
