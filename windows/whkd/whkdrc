@@ -7,7 +7,8 @@ alt + i                 : komorebic toggle-shortcuts
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-alt + a                 : start alacritty
+#alt + a                 : alacritty --config-file $HOME\.dotfiles\windows\alacritty\alacritty.toml --working-directory $HOME
+alt + a : pwsh -NoProfile -Command "Start-Process alacritty"
 
 # Focus windows
 alt + h                 : komorebic focus left

@@ -1,5 +1,3 @@
-[general]
-working_directory = "/Users/Alex"
 [window]
 title = "Alacritty"
 dynamic_title = false
@@ -24,3 +22,4 @@ shell = "pwsh.exe"
 bindings = [
   { key = "V", mods = "Control", action = "Paste" },
   { key = "Return", mode = "Vi", action = "ToggleViMode" },
+]

@@ -12,4 +12,5 @@ ShareX - Screen capture and color picker - https://github.com/ShareX/ShareX
 Env Vars:
 YASB_CONFIG_HOME = C:\path\to\.dotfiles\windows\yasb
 KOMOREBI_CONFIG_HOME = C:\path\to\.dotfiles\windows\komorebi
+WHKD_CONFIG_HOME = C:\path\to\.dotfiles\windows\whkd
 XDG_CONFIG_HOME = C:\path\to\.dotfiles 
