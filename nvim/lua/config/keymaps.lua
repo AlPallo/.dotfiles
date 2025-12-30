@@ -15,7 +15,17 @@ vim.g.clipboard = {
 		["*"] = paste,
 	},
 }
-vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
+local opts = opts
+vim.keymap.set("v", "<C-c>", '"+y', opts)
+vim.keymap.set("n", "c", '"_c', opts)
+vim.keymap.set("n", "r", '"_r', opts)
+vim.keymap.set("n", "x", '"_x', opts)
+vim.keymap.set("n", "s", '"_s', opts)
+vim.keymap.set("n", "C", '"_C', opts)
+vim.keymap.set("n", "X", '"_X', opts)
+vim.keymap.set("v", "c", '"_c', opts)
+vim.keymap.set("v", "r", '"_r', opts)
+vim.keymap.set("v", "s", '"_s', opts)
 vim.keymap.set("n", "/", "/\\v", { noremap = true })
 vim.keymap.set("n", "?", "?\\v", { noremap = true })
 vim.keymap.set(
@@ -30,9 +40,9 @@ vim.keymap.set(
 	":let @/='\\V'.escape(@\", '\\')<CR>n",
 	{ noremap = true, silent = true, desc = "Search for last yanked text" }
 )
-vim.keymap.set("n", "<Esc>", ":nohlsearch<CR><Esc>", { noremap = true, silent = true })
-vim.keymap.set("n", "n", ":set hlsearch<CR>n", { noremap = true, silent = true })
-vim.keymap.set("n", "N", ":set hlsearch<CR>N", { noremap = true, silent = true })
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR><Esc>", opts)
+vim.keymap.set("n", "n", ":set hlsearch<CR>n", opts)
+vim.keymap.set("n", "N", ":set hlsearch<CR>N", opts)
 local leaderkey = "<leader>"
 local l = function(after)
 	return string.format("%s%s", leaderkey, after)
@@ -43,8 +53,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", l("J"), "mzJ`z")
 vim.keymap.set("n", "G", "Gzz")
-vim.keymap.set("n", "<C-o>", "<C-o>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-i>", "<C-i>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-o>", "<C-o>zz", opts)
+vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
 
 local function half_page_down()
 	local win = vim.api.nvim_get_current_win()
@@ -73,10 +83,10 @@ vim.keymap.set("x", "D", function()
 end, { silent = true })
 
 -- Jump visual lines instead of logical lines
-vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
-vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
-vim.keymap.set("n", "gj", "j", { noremap = true, silent = true })
-vim.keymap.set("n", "gk", "k", { noremap = true, silent = true })
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)
+vim.keymap.set("n", "gj", "j", opts)
+vim.keymap.set("n", "gk", "k", opts)
 
 vim.keymap.set("n", "<leader>pe", function()
 	local count = vim.v.count == 0 and 1 or vim.v.count
