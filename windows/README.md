@@ -14,3 +14,13 @@ YASB_CONFIG_HOME = C:\path\to\.dotfiles\windows\yasb
 KOMOREBI_CONFIG_HOME = C:\path\to\.dotfiles\windows\komorebi
 WHKD_CONFIG_HOME = C:\path\to\.dotfiles\windows\whkd
 XDG_CONFIG_HOME = C:\path\to\.dotfiles 
+
+Neovim dependencies (available via scoop):
+7zip
+fd
+fzf
+lua
+lua-language-server
+luarocks
+ripgrep
+zig
