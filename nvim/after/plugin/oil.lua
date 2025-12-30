@@ -24,7 +24,7 @@ oil.setup({
 		["-"] = { "actions.parent", mode = "n" },
 		["`"] = { "actions.cd", mode = "n" },
 		["gs"] = { "actions.change_sort", mode = "n" },
-		["g."] = { "actions.toggle_hidden", mode = "n" },
+		["."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
 	},
 	use_default_keymaps = false,
