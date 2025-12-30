@@ -46,6 +46,7 @@ if status is-interactive
   set -Ux DOCKER_CONFIG $HOME/.ldocker
   set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
   set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+  set -U fish_user_paths /usr/local/inotify-tools/bin $fish_user_paths
 
   set -U fish_greeting ""
 
