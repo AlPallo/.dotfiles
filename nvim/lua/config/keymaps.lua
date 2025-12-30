@@ -20,7 +20,7 @@ vim.keymap.set("n", "/", "/\\v", { noremap = true })
 vim.keymap.set("n", "?", "?\\v", { noremap = true })
 vim.keymap.set(
 	"v",
-	"f",
+	"<leader>f",
 	"y:let @/='\\V'.escape(@0, '\\')<CR>n",
 	{ noremap = true, silent = true, desc = "Find selected text" }
 )

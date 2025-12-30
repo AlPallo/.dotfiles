@@ -9,4 +9,6 @@ vim.lsp.enable({
 	"vsc_css",
 	"vsc_json",
 	"vsc_html",
+	"yamlls",
+	"ansiblels",
 })

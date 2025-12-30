@@ -65,7 +65,6 @@ return require("lazy").setup({
   "alexghergh/nvim-tmux-navigation",
   { "rmehri01/onenord.nvim", priority = 100, opts = {} },
   "mbbill/undotree",
-  "neovim/nvim-lspconfig",
   {
     "esmuellert/vscode-diff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
