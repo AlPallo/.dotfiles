@@ -194,3 +194,27 @@ vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Wq", "wq", {})
 vim.api.nvim_create_user_command("WQ", "wq", {})
 vim.api.nvim_create_user_command("Q", "quit", {})
+
+vim.keymap.set("x", "<leader>m", function()
+	local mode = vim.fn.mode()
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
+	vim.ui.input({ prompt = "Command (each line): " }, function(input)
+		if not input or input == "" then
+			return
+		end
+		local start_line = vim.fn.line("'<")
+		local end_line = vim.fn.line("'>")
+		local start_col = vim.fn.col("'<")
+		for i = start_line, end_line do
+			if mode == "V" then
+				vim.api.nvim_win_set_cursor(0, { i, 0 })
+			elseif mode == "\22" then
+				pcall(vim.api.nvim_win_set_cursor, 0, { i, start_col - 1 })
+			end
+			local success, err = pcall(vim.cmd, "normal! " .. input)
+			if not success then
+				print("Error on line " .. i .. ": " .. err)
+			end
+		end
+	end)
+end, { desc = "Execute command on each line of selection" })
