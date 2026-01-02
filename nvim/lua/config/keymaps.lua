@@ -15,7 +15,7 @@ vim.g.clipboard = {
 		["*"] = paste,
 	},
 }
-local opts = opts
+local opts = { noremap = true, silent = true }
 vim.keymap.set("v", "<C-c>", '"+y', opts)
 vim.keymap.set("n", "c", '"_c', opts)
 vim.keymap.set("n", "r", '"_r', opts)
@@ -189,3 +189,8 @@ vim.keymap.set("n", "<leader>pb", function()
 		end
 	end
 end, { desc = "[p]aste to [b]eginning of each line" })
+
+vim.api.nvim_create_user_command("W", "write", {})
+vim.api.nvim_create_user_command("Wq", "wq", {})
+vim.api.nvim_create_user_command("WQ", "wq", {})
+vim.api.nvim_create_user_command("Q", "quit", {})
