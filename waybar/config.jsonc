@@ -1,0 +1,46 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 4,
+    "margin-top": 2,
+    "margin-left": 2,
+    "margin-right": 2,
+
+    
+    "modules-left": [
+        "custom/power",
+        "river/tags"
+    ],
+    
+    "modules-center": [
+        "clock"
+    ],
+    
+    "modules-right": [
+        "tray"
+    ],
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout" 
+    },
+
+    "river/tags": {
+        "num-tags": 5,
+        "tag-labels": ["1", "2", "3", "4", "5"]
+    },
+
+    "clock": {
+        "format": "{:%a, %d %b %I:%M %p}",
+        
+        "tooltip": false,
+        "on-click": "exec ~/.config/waybar/toggle_calendar.sh"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    }
+}

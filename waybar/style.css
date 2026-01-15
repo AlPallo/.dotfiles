@@ -1,0 +1,82 @@
+@define-color bg-color1 #191919;
+@define-color bg-color2 #333333;
+@define-color text1 #d4d9eb;
+@define-color text4 #7f849c;
+@define-color blue #448fff;
+@define-color lavender #b4befe;
+@define-color red #f38ba8;
+
+* {
+    border: none;
+    font-family: "CaskaydiaCove Nerd Font";
+    font-size: 12px;
+    font-weight: 600;
+}
+
+window#waybar {
+    background-color: @bg-color1;
+    color: @text1;
+    border: 1px solid @bg-color2; 
+    border-radius: 8px;
+}
+
+#custom-power {
+    color: @lavender;
+    padding-left: 12px;
+    padding-right: 8px;
+    font-size: 14px;
+}
+
+#custom-power:hover {
+    color: @text1;
+}
+
+#tags * {
+    font-size: 6px; 
+}
+
+#tags button {
+    color: transparent;
+    min-width: 9px;
+    min-height: 6px;
+    margin: 8px 4px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background-color: #636878; 
+    transition: min-width 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+}
+
+#tags button.occupied {
+    background-color: #b4befe; 
+}
+
+#tags button.focused {
+    background-color: #4a90f9; 
+    min-width: 42px; 
+    border-radius: 12px;
+}
+
+#tags button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-color: #81A1C1;
+}
+
+#clock {
+    color: @text1;
+}
+
+#tray {
+    padding-right: 12px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}

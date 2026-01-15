@@ -1,0 +1,47 @@
+#!/bin/sh
+
+export XDG_CURRENT_DESKTOP=river
+export XDG_SESSION_TYPE=wayland
+
+systemctl --user import-environment XDG_CURRENT_DESKTOP XDG_SESSION_TYPE WAYLAND_DISPLAY
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+
+Alt="Mod1"
+
+waybar & 
+
+riverctl default-layout bsp-layout
+river-bsp-layout --inner-gap 4 --outer-gap 4 --split-perc 0.5 &
+riverctl set-cursor-warp on-output-change
+
+riverctl map normal $Alt Space spawn 'rofi -show drun'
+
+riverctl map normal $Alt Q close
+
+riverctl map normal $Alt l focus-view next
+riverctl map normal $Alt h focus-view previous
+riverctl map normal $Alt+Shift l swap next
+riverctl map normal $Alt+Shift h swap previous
+riverctl map normal $Alt+Shift+Control L spawn "$HOME/.config/river/move_window_to_tag.sh next"
+riverctl map normal $Alt+Shift+Control H spawn "$HOME/.config/river/move_window_to_tag.sh prev"
+riverctl map normal $Alt+Control l spawn "$HOME/.config/river/tag_cycle.sh next"
+riverctl map normal $Alt+Control h spawn "$HOME/.config/river/tag_cycle.sh prev"
+
+riverctl map normal Super 1 spawn 'river-ws 1'
+riverctl map normal Super 2 spawn 'river-ws 2'
+riverctl map normal Super 3 spawn 'river-ws 3'
+riverctl map normal Super 4 spawn 'river-ws 4'
+riverctl map normal Super 5 spawn 'river-ws 5'
+
+riverctl border-width 2
+riverctl background-color 0x000000
+riverctl border-color-focused 0x8a769e
+riverctl border-color-unfocused 0x646a71
+
+riverctl map normal $Alt z toggle-fullscreen
+hide-cursor when-typing enabled
+
+riverctl rule-add -app-id "zen-cal" float
+
+STATE_FILE="/tmp/river-tag-state"
+echo "1" > "$STATE_FILE"
