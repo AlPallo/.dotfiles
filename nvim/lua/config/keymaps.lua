@@ -218,3 +218,43 @@ vim.keymap.set("x", "<leader>m", function()
 		end
 	end)
 end, { desc = "Execute command on each line of selection" })
+
+local function subword_motion(op, char)
+	local original_iskeyword = vim.bo.iskeyword
+	vim.opt_local.iskeyword:remove(char)
+	if op == "c" then
+		vim.cmd('normal! viw"_d')
+		vim.cmd("startinsert")
+
+		vim.api.nvim_create_autocmd("InsertLeave", {
+			buffer = 0,
+			once = true,
+			callback = function()
+				vim.bo.iskeyword = original_iskeyword
+			end,
+		})
+	elseif op == "d" then
+		vim.cmd('normal! viw"_d')
+		vim.bo.iskeyword = original_iskeyword
+	else
+		vim.cmd("normal!" .. op .. "iw")
+		vim.bo.iskeyword = original_iskeyword
+	end
+end
+
+local subword_delimiters = { "_", "-" }
+
+for _, delimiter in ipairs(subword_delimiters) do
+	vim.keymap.set("n", "ci" .. delimiter, function()
+		subword_motion("c", delimiter)
+	end)
+	vim.keymap.set("n", "di" .. delimiter, function()
+		subword_motion("d", delimiter)
+	end)
+	vim.keymap.set("n", "yi" .. delimiter, function()
+		subword_motion("y", delimiter)
+	end)
+	vim.keymap.set("n", "vi" .. delimiter, function()
+		subword_motion("v", delimiter)
+	end)
+end

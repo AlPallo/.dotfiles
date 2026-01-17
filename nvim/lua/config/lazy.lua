@@ -63,15 +63,15 @@ return require("lazy").setup({
 	"nvim-tree/nvim-web-devicons",
 	"tpope/vim-fugitive",
 	"alexghergh/nvim-tmux-navigation",
-	{ "rmehri01/onenord.nvim", priority = 100, opts = {} },
+	{ "rmehri01/onenord.nvim", priority = 1000, opts = {} },
 	"mbbill/undotree",
 	"neovim/nvim-lspconfig",
 	{
-		"esmuellert/vscode-diff.nvim",
+		"esmuellert/codediff.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		cmd = "CodeDiff",
 		config = function()
-			require("vscode-diff").setup({
+			require("codediff").setup({
 				keymaps = {
 					view = {
 						quit = "q",
@@ -99,7 +99,6 @@ return require("lazy").setup({
 			clear_always = false,
 		},
 	},
-	{ "tpope/vim-sleuth" },
 	{ "tpope/vim-repeat" },
 	{
 		"andyg/leap.nvim",
