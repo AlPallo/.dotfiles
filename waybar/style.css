@@ -68,8 +68,24 @@ window#waybar {
     color: @text1;
 }
 
+#group-tray-drawer {
+    background-color: @bg-color2;
+    border-radius: 8px;
+    margin-right: 12px;
+    padding-left: 10px;
+    padding-right: 5px; /* Adjust based on preference */
+}
+
+#custom-tray-icon {
+    font-size: 16px;
+    color: @lavender;
+    padding-right: 8px;
+    margin-top: 2px;
+}
+
 #tray {
-    padding-right: 12px;
+    padding-right: 8px;
+    background-color: transparent;
 }
 
 #tray > .passive {
@@ -79,4 +95,8 @@ window#waybar {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: @red;
+}
+
+.tray-child {
+    margin-left: 5px;
 }

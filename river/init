@@ -1,20 +1,22 @@
 #!/bin/sh
 
+killall -q river-bsp-layout
+killall -w waybar 2>/dev/null 
+
 export XDG_CURRENT_DESKTOP=river
 export XDG_SESSION_TYPE=wayland
-
 systemctl --user import-environment XDG_CURRENT_DESKTOP XDG_SESSION_TYPE WAYLAND_DISPLAY
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 Alt="Mod1"
 
-waybar & 
+riverctl spawn "$HOME/.config/river/launch_waybar.sh"
 
 riverctl default-layout bsp-layout
 river-bsp-layout --inner-gap 4 --outer-gap 4 --split-perc 0.5 &
 riverctl set-cursor-warp on-output-change
 
-riverctl map normal $Alt Space spawn 'rofi -show drun'
+riverctl map normal $Alt Space spawn 'fuzzel'
 
 riverctl map normal $Alt Q close
 
@@ -42,6 +44,63 @@ riverctl map normal $Alt z toggle-fullscreen
 hide-cursor when-typing enabled
 
 riverctl rule-add -app-id "zen-cal" float
+riverctl csd-filter-remove app-id 'brave-browser'
+riverctl csd-filter-remove app-id 'discord'
 
 STATE_FILE="/tmp/river-tag-state"
 echo "1" > "$STATE_FILE"
+
+# brave-browser (no border)
+# foot
+# Spotify
+# discord (no border)
+
+
+# Launch Background Initialization Logic
+(
+    # --- 1. Set Rules for Single-Instance Apps ---
+    # Spotify on Tag 1 (Mask 1)
+    # Note: XWayland apps often need the capitalized class name 'Spotify'
+    riverctl rule-add -app-id 'Spotify' tags 1
+    
+    # Foot on Tag 2 (Mask 2)
+    riverctl rule-add -app-id 'foot' tags 2
+    
+    # Discord on Tag 4 (Mask 8)
+    riverctl rule-add -app-id 'discord' tags 8
+
+    # --- 2. Initial Spawn (Non-Conflicting Apps) ---
+    riverctl spawn spotify
+    riverctl spawn foot
+    riverctl spawn discord
+
+    # --- 3. Handle Tag 1 Layout (Spotify Left, Brave Right) ---
+    # Spotify is already spawned. River places the next window 
+    # in the "stack" (Right side) by default.
+    
+    # Set Brave to Tag 1
+    riverctl rule-add -app-id 'brave-browser' tags 1
+    riverctl spawn brave
+    
+    # CRITICAL WAIT: Wait for Brave #1 to actually appear so the rule applies 
+    # before we change it for the next window.
+    sleep 3 
+
+    # --- 4. Handle Tag 3 (Brave Window #2) ---
+    # Clear the previous Brave rule so we don't force BOTH windows to Tag 1
+    riverctl rule-del -app-id 'brave-browser' tags 1
+    
+    # Set Brave to Tag 3 (Mask 4)
+    riverctl rule-add -app-id 'brave-browser' tags 4
+    riverctl spawn brave
+
+    # --- 5. Cleanup Timer ---
+    # Wait 60 seconds, then remove strict tag enforcement
+    sleep 3
+    
+    riverctl rule-del -app-id 'Spotify' tags 1
+    riverctl rule-del -app-id 'foot' tags 2
+    riverctl rule-del -app-id 'discord' tags 8
+    riverctl rule-del -app-id 'brave-browser' tags 4 2>/dev/null
+
+) &
