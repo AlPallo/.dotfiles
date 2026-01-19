@@ -258,3 +258,14 @@ for _, delimiter in ipairs(subword_delimiters) do
 		subword_motion("v", delimiter)
 	end)
 end
+
+local function clear_undo()
+  local old_undolevels = vim.bo.undolevels
+  vim.bo.undolevels = -1
+  vim.cmd('exe "normal a \\<BS>\\<Esc>"')
+  vim.bo.undolevels = old_undolevels
+  print("Undo history cleared for current buffer.")
+end
+
+vim.api.nvim_create_user_command('ClearUndo', clear_undo, {})
+vim.keymap.set('n', '<leader>uc', clear_undo, { desc = "Clear Undo History" })
