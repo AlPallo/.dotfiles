@@ -10,31 +10,36 @@ alt + i                 : komorebic toggle-shortcuts
 #alt + a                 : alacritty --config-file $HOME\.dotfiles\windows\alacritty\alacritty.toml --working-directory $HOME
 alt + a : pwsh -NoProfile -Command "Start-Process alacritty"
 
-# Focus windows
-alt + h                 : komorebic focus left
-alt + j                 : komorebic focus down
-alt + k                 : komorebic focus up
-alt + l                 : komorebic focus right
-alt + z		            	: komorebic toggle-monocle
+# Focus windows (Wrapped with peek.py)
+alt + h                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus left
+alt + j                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus down
+alt + k                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus up
+alt + l                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus right
+alt + z                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic toggle-monocle
 
-# Move windows
-alt + shift + h         : komorebic move left
-alt + shift + j         : komorebic move down
-alt + shift + k         : komorebic move up
-alt + shift + l         : komorebic move right
+# Move windows (Wrapped with peek.py)
+alt + shift + h         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move left
+alt + shift + j         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move down
+alt + shift + k         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move up
+alt + shift + l         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move right
 
 # Manipulate windows
-alt + q                 : komorebic close
+alt + q                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic close
 
 # Window manager options
-alt + shift + r         : komorebic retile
+alt + shift + r         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic retile
 
 # Workspaces
-ctrl + alt + l		: komorebic cycle-workspace next
-ctrl + alt + h		: komorebic cycle-workspace previous
-ctrl + alt + c    : komorebic new-workspace
-ctrl + alt + x    : komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace
+ctrl + alt + l          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic cycle-workspace next
+ctrl + alt + h          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic cycle-workspace previous
+ctrl + alt + c          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic new-workspace
+# For complex chains, you can wrap the whole command string
+ctrl + alt + x          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py pwsh -NoProfile -Command "komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace"
 
 # Move windows across workspaces
-ctrl + alt + shift + l : pwsh -NoProfile -Command "& python '$env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py' next"
-ctrl + alt+ shift + h : pwsh -NoProfile -Command "& python '$env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py' previous"
+# Since peek.py accepts arguments, we can pass the python call for move_tile.py as arguments to peek.py
+ctrl + alt + shift + l  : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py next
+ctrl + alt + shift + h  : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py previous
+
+# Taskbar
+alt + b : yasbc toggle-bar

@@ -8,6 +8,7 @@ komorebi:
     reload_command: "komorebic stop --whkd && komorebic start --whkd"
 bars:
     primary-bar:
+        auto_hide: true
         enabled: true
         screens: ["*"]
         class_name: "yasb-bar"
