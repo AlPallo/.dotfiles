@@ -49,9 +49,9 @@ widgets:
         type: "yasb.systray.SystrayWidget"
         options:
             class_name: "systray"
-            label_collapsed: "▼"
-            label_expanded: "X"
             label_position: "right"
+            show_unpinned_button: false 
+            show_unpinned: true
             icon_size: 16
             pin_click_modifier: "alt"
             show_unpinned: false
