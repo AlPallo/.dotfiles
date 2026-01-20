@@ -11,11 +11,11 @@ alt + i                 : komorebic toggle-shortcuts
 alt + a : pwsh -NoProfile -Command "Start-Process alacritty"
 
 # Focus windows (Wrapped with peek.py)
-alt + h                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus left
-alt + j                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus down
-alt + k                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus up
-alt + l                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic focus right
-alt + z                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic toggle-monocle
+alt + h                 : komorebic focus left
+alt + j                 : komorebic focus down
+alt + k                 : komorebic focus up
+alt + l                 : komorebic focus right
+alt + z                 : komorebic toggle-monocle
 
 # Move windows (Wrapped with peek.py)
 alt + shift + h         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move left
