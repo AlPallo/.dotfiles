@@ -11,4 +11,5 @@ vim.lsp.enable({
 	"vsc_html",
 	"yamlls",
 	"ansiblels",
+	"harper_ls",
 })

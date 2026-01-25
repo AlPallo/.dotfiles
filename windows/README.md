@@ -24,3 +24,4 @@ lua-language-server
 luarocks
 ripgrep
 zig
+harper
