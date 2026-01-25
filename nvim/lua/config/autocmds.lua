@@ -64,9 +64,14 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("restore_cursor_pos", { clear = true }),
 	callback = function()
-		local exclude = { "gitcommit" }
+		local exclude_ft = { "gitcommit" }
 		local buf = vim.api.nvim_get_current_buf()
-		if vim.tbl_contains(exclude, vim.bo[buf].filetype) then
+		if vim.tbl_contains(exclude_ft, vim.bo[buf].filetype) then
+			return
+		end
+		local exclude_fn = { "COMMIT_EDITMSG" }
+		local filename = vim.fn.expand("%:t")
+		if vim.tbl_contains(exclude_fn, filename) then
 			return
 		end
 
@@ -74,7 +79,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		local line_count = vim.api.nvim_buf_line_count(buf)
 		if mark[1] > 0 and mark[1] <= line_count then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
-			vim.api.nvim_feedkeys("zvzz", "n", true)
+			vim.cmd("normal! zvzz")
 		end
 	end,
 	desc = "Restore cursor position after reopening file",

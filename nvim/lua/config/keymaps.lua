@@ -284,3 +284,96 @@ vim.keymap.set("n", "<leader>ha", function()
 		end,
 	})
 end, { desc = "Harper: Add word to Dict" })
+
+local function harper_suggest()
+	local params = vim.lsp.util.make_range_params()
+	params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+
+	vim.lsp.buf_request(0, "textDocument/codeAction", params, function(_, result, ctx, _)
+		if not result or vim.tbl_isempty(result) then
+			vim.notify("No suggestions found.", vim.log.levels.WARN)
+			return
+		end
+
+		-- 1. Parse and Clean Suggestions
+		local suggestions = {}
+		for _, action in pairs(result) do
+			local title = action.title
+			if title and title:find("Replace with:") then
+				local clean_text = title:gsub("Replace with: ", ""):gsub("“", ""):gsub("”", ""):gsub('"', "")
+				local word = vim.trim(clean_text)
+				table.insert(suggestions, { label = word, action = action })
+			end
+		end
+
+		if #suggestions == 0 then
+			vim.notify("No suggestions found.", vim.log.levels.WARN)
+			return
+		end
+
+		-- 2. Create a Scratch Buffer for the Menu
+		local buf = vim.api.nvim_create_buf(false, true)
+		local lines = {}
+
+		for _, item in ipairs(suggestions) do
+			table.insert(lines, item.label)
+		end
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+		-- 3. Calculate Size & Position
+		local width = 0
+		for _, line in ipairs(lines) do
+			if #line > width then
+				width = #line
+			end
+		end
+		local height = #lines
+
+		-- 4. Open Floating Window Relative to Cursor
+		local window_opts = {
+			relative = "cursor",
+			row = 1,
+			col = 0,
+			width = width + 4,
+			height = height,
+			style = "minimal",
+			border = "rounded", -- 'single', 'double', 'rounded', or 'solid'
+		}
+		local win = vim.api.nvim_open_win(buf, true, window_opts)
+
+		-- 5. Window Options (Make it look like a menu)
+		vim.api.nvim_win_set_option(win, "cursorline", true) -- Highlight current selection
+		vim.api.nvim_win_set_option(win, "winhl", "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel") -- CMP colors
+
+		-- 6. Keymaps: Interaction
+		local function close_menu()
+			vim.api.nvim_win_close(win, true)
+		end
+
+		local function confirm_selection()
+			local cursor = vim.api.nvim_win_get_cursor(win)
+			local index = cursor[1] -- 1-based index
+			local item = suggestions[index]
+
+			close_menu()
+
+			if item then
+				local action = item.action
+				if action.edit or type(action.command) == "table" then
+					if action.edit then
+						vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
+					end
+					if action.command then
+						local command = type(action.command) == "table" and action.command or action
+						-- vim.lsp.buf.execute_command(command)
+					end
+				end
+			end
+		end
+		vim.keymap.set("n", "<CR>", confirm_selection, { noremap = true, silent = true, buffer = buf })
+		vim.keymap.set("n", "q", close_menu, { noremap = true, silent = true, buffer = buf })
+		vim.keymap.set("n", "<Esc>", close_menu, { noremap = true, silent = true, buffer = buf })
+	end)
+end
+
+vim.keymap.set("n", "<leader>s", harper_suggest, { desc = "Harper Suggest" })
