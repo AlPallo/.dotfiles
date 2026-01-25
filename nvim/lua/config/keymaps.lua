@@ -26,6 +26,8 @@ vim.keymap.set("n", "X", '"_X', opts)
 vim.keymap.set("v", "c", '"_c', opts)
 vim.keymap.set("v", "r", '"_r', opts)
 vim.keymap.set("v", "s", '"_s', opts)
+vim.keymap.set("v", "x", '"_x', opts)
+vim.keymap.set("v", "X", '"_X', opts)
 vim.keymap.set("n", "/", "/\\v", { noremap = true })
 vim.keymap.set("n", "?", "?\\v", { noremap = true })
 vim.keymap.set(
@@ -269,3 +271,4 @@ end
 
 vim.api.nvim_create_user_command('ClearUndo', clear_undo, {})
 vim.keymap.set('n', '<leader>uc', clear_undo, { desc = "Clear Undo History" })
+vim.keymap.set('n', '<leader>cu', clear_undo, { desc = "Clear Undo History" })
