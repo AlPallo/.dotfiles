@@ -32,6 +32,8 @@ require("telescope").setup({
 			hidden = true,
 			find_command = {
 				"fd",
+				"--hidden",
+				"--no-ignore",
 				"--exclude",
 				".git",
 				"--exclude",

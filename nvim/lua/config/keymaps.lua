@@ -377,3 +377,6 @@ local function harper_suggest()
 end
 
 vim.keymap.set("n", "<leader>s", harper_suggest, { desc = "Harper Suggest" })
+
+vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left in insert mode" })
+vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right in insert mode" })
