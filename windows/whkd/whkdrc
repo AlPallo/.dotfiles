@@ -10,7 +10,7 @@ alt + i                 : komorebic toggle-shortcuts
 #alt + a                 : alacritty --config-file $HOME\.dotfiles\windows\alacritty\alacritty.toml --working-directory $HOME
 alt + a : pwsh -NoProfile -Command "Start-Process alacritty"
 
-# Focus windows (Wrapped with peek.py)
+# Focus windows
 alt + h                 : komorebic focus left
 alt + j                 : komorebic focus down
 alt + k                 : komorebic focus up
@@ -42,4 +42,4 @@ ctrl + alt + shift + l  : python $env:USERPROFILE\.dotfiles\windows\komorebi\pee
 ctrl + alt + shift + h  : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py previous
 
 # Taskbar
-alt + b : yasbc toggle-bar
+alt + b : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py toggle
