@@ -40,10 +40,11 @@ if status is-interactive
 
   # Vars
   set -Ux ANSIBLE_VAULT_PASSWORD_FILE "$HOME/.ansible-vault.key"
+	set -Ux ANSIBLE_HOME "$HOME/.cache/ansible"
   set -Ux EDITOR nvim
   set -Ux MANPAGER "nvim +Man!"
   set -Ux PGPASSFILE "$HOME/.pgpass"
-  set -Ux DOCKER_CONFIG $HOME/.ldocker
+  set -Ux DOCKER_CONFIG "$HOME/.ldocker"
   set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
   set -U fish_user_paths $HOME/.local/bin $fish_user_paths
   set -U fish_user_paths /usr/local/inotify-tools/bin $fish_user_paths

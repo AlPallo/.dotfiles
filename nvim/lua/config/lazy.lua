@@ -38,10 +38,7 @@ return require("lazy").setup({
 			},
 		},
 	},
-	{
-		"benomahony/oil-git.nvim",
-		dependencies = { "stevearc/oil.nvim" },
-	},
+	{ "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
 	{
 		"saghen/blink.cmp",
 		dependencies = {
