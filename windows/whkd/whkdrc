@@ -1,45 +1,47 @@
 .shell powershell
 
 # Reload whkd configuration
-alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
-alt + shift + o         : komorebic reload-configuration
-alt + i                 : komorebic toggle-shortcuts
+alt + o : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
+alt + shift + o : komorebic reload-configuration
+alt + i : komorebic toggle-shortcuts
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-#alt + a                 : alacritty --config-file $HOME\.dotfiles\windows\alacritty\alacritty.toml --working-directory $HOME
+#alt + a : alacritty --config-file $HOME\.dotfiles\windows\alacritty\alacritty.toml --working-directory $HOME
 alt + a : pwsh -NoProfile -Command "Start-Process alacritty"
 
 # Focus windows
-alt + h                 : komorebic focus left
-alt + j                 : komorebic focus down
-alt + k                 : komorebic focus up
-alt + l                 : komorebic focus right
-alt + z                 : komorebic toggle-monocle
+alt + h : komorebic focus left
+alt + j : komorebic focus down
+alt + k : komorebic focus up
+alt + l : komorebic focus right
+alt + z : komorebic toggle-monocle
 
 # Move windows (Wrapped with peek.py)
-alt + shift + h         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move left
-alt + shift + j         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move down
-alt + shift + k         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move up
-alt + shift + l         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move right
+alt + shift + h : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move left
+alt + shift + j : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move down
+alt + shift + k : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move up
+alt + shift + l : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic move right
 
 # Manipulate windows
-alt + q                 : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic close
+alt + q : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic close
 
 # Window manager options
-alt + shift + r         : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic retile
+alt + shift + r : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic retile
 
 # Workspaces
-ctrl + alt + l          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic cycle-workspace next
-ctrl + alt + h          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic cycle-workspace previous
-ctrl + alt + c          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic new-workspace
+ctrl + alt + l : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\cycle.py next
+ctrl + alt + h : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\cycle.py previous
+ctrl + alt + c : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py komorebic new-workspace
 # For complex chains, you can wrap the whole command string
-ctrl + alt + x          : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py pwsh -NoProfile -Command "komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace"
+ctrl + alt + x : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py pwsh -NoProfile -Command "komorebic close; komorebic close; komorebic close; komorebic close; komorebic close-workspace"
 
 # Move windows across workspaces
 # Since peek.py accepts arguments, we can pass the python call for move_tile.py as arguments to peek.py
-ctrl + alt + shift + l  : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py next
-ctrl + alt + shift + h  : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py previous
+ctrl + alt + shift + l : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py next
+ctrl + alt + shift + h : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py python $env:USERPROFILE\.dotfiles\windows\komorebi\move_tile.py previous
 
 # Taskbar
 alt + b : python $env:USERPROFILE\.dotfiles\windows\komorebi\peek.py toggle
+
+alt + p : komorebic toggle-pause

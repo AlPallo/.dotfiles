@@ -43,9 +43,9 @@ total_ws_idx = total_ws - 1
 current_ws_idx = komorebic_state["monitors"]["elements"][0]["workspaces"]["focused"]
 target_ws_idx = current_ws_idx + target_delta
 if target_ws_idx > total_ws_idx:
-    target_ws_idx = 0
-if target_ws_idx < 0:
     target_ws_idx = total_ws_idx
+if target_ws_idx < 0:
+    target_ws_idx = 0
 
 
 mv_command = ["komorebic", "move-to-workspace", str(target_ws_idx)]
