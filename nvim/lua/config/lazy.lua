@@ -38,7 +38,10 @@ return require("lazy").setup({
 			},
 		},
 	},
-	{ "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
+	{
+		"benomahony/oil-git.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+	},
 	{
 		"saghen/blink.cmp",
 		dependencies = {
@@ -100,5 +103,9 @@ return require("lazy").setup({
 	{
 		"andyg/leap.nvim",
 		url = "https://codeberg.org/andyg/leap.nvim",
+	},
+	{
+		"wurli/visimatch.nvim",
+		opts = {},
 	},
 })

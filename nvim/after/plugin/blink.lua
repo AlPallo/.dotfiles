@@ -17,6 +17,7 @@ require("blink.cmp").setup({
 	},
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
+		max_typos = 0,
 	},
 	signature = {
 		enabled = true,
