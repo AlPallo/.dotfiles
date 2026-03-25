@@ -87,6 +87,7 @@
     nixfmt
     dockerfmt
     sqls
+		gitlab-ci-ls
   ];
 
   programs.fish = {

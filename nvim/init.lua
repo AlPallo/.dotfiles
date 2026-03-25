@@ -14,4 +14,5 @@ vim.lsp.enable({
 	"docker_ls",
 	"ty",
 	"sqls",
+	"gitlab_ci_ls",
 })
