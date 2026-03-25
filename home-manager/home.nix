@@ -25,7 +25,13 @@
   # Packages that should be installed to the user profile.
 
   home.packages = with pkgs; [
-    python314
+    (python314.withPackages (
+      ps: with ps; [
+        pgcli
+        keyring
+        keyrings-alt
+      ]
+    ))
     fzf
     git
     nodejs_25
@@ -40,7 +46,6 @@
     djhtml
     djlint
     isort
-    pgcli
     ruff
     tmux
     prettier
@@ -80,7 +85,8 @@
     docker-language-server
     ty
     nixfmt
-		dockerfmt
+    dockerfmt
+    sqls
   ];
 
   programs.fish = {

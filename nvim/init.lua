@@ -13,4 +13,5 @@ vim.lsp.enable({
 	"harper_ls",
 	"docker_ls",
 	"ty",
+	"sqls",
 })
