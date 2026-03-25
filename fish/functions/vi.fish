@@ -1,7 +1,7 @@
 function vi
     if test (count $argv) -eq 0
-        command vi .
+        command nvim .
     else
-        command vi $argv
+        command nvim $argv
     end
 end
