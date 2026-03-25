@@ -149,6 +149,7 @@
   xdg.configFile."fish/conf.d".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/conf.d";
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
   xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux";
+	xdg.configFile.".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.lesskey";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
