@@ -53,7 +53,6 @@
 		yaml-language-server
 		redis
 		iredis
-		stow
 		unzip
 		tree
 		rustup
