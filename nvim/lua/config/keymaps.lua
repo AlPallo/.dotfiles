@@ -84,11 +84,14 @@ vim.keymap.set("x", "D", function()
 	vim.cmd("normal! $d")
 end, { silent = true })
 
--- Jump visual lines instead of logical lines
-vim.keymap.set("n", "j", "gj", opts)
-vim.keymap.set("n", "k", "gk", opts)
+
+-- Jump visual lines if no count is provided, otherwise jump logical (numbered) lines
+local expr_opts = { expr = true, silent = true }
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 vim.keymap.set("n", "gj", "j", opts)
 vim.keymap.set("n", "gk", "k", opts)
+
 
 vim.keymap.set("n", "<leader>pe", function()
 	local count = vim.v.count == 0 and 1 or vim.v.count
