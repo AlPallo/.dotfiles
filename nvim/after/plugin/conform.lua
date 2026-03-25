@@ -7,6 +7,8 @@ require("conform").setup({
 		css = { "prettierd", "prettier" },
 		json = { "prettierd", "prettier" },
 		jinja = { "djlint" },
+		nix = { "nixfmt" },
+		dockerfile = { "dockerfmt" }
 	},
 	default_format_opts = {
 		lsp_format = "fallback",

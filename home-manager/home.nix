@@ -6,81 +6,86 @@
   home.username = "alex";
   home.homeDirectory = "/home/alex";
 
-	home.sessionVariables = {
-			ANSIBLE_VAULT_PASSWORD_FILE = "$HOME/.ansible-vault.key";
-			ANSIBLE_HOME = "$HOME/.cache/ansible";
-			EDITOR = "nvim";
-			MANPAGER = "nvim +Man!";
-			PGPASSFILE = "$HOME/.pgpass";
-			DOCKER_CONFIG = "$HOME/.ldocker";
-		};
+  home.sessionVariables = {
+    ANSIBLE_VAULT_PASSWORD_FILE = "$HOME/.ansible-vault.key";
+    ANSIBLE_HOME = "$HOME/.cache/ansible";
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+    PGPASSFILE = "$HOME/.pgpass";
+    DOCKER_CONFIG = "$HOME/.ldocker";
+  };
 
-	home.sessionPath = [
+  home.sessionPath = [
     "$HOME/.nix-profile/bin"
     "/nix/var/nix/profiles/default/bin"
     "$HOME/.cargo/bin"
     "$HOME/.local/bin"
     "/usr/local/inotify-tools/bin"
   ];
-   # Packages that should be installed to the user profile.
+  # Packages that should be installed to the user profile.
 
   home.packages = with pkgs; [
-		python314
+    python314
     fzf
     git
-		nodejs_25
+    nodejs_25
     fd
-		ripgrep
-		neovim
-		lua-language-server
-		pipx
-		ansible-lint
-		autoflake
-		black
-		djhtml
-		djlint
-		isort
-		pgcli
-		ruff
-		tmux
-		prettier
-		prettierd
-		vtsls
-		bash-language-server
-		fish-lsp
-		pyright
-		vscode-langservers-extracted
-		yaml-language-server
-		redis
-		iredis
-		unzip
-		tree
-		rustup
-		go
-		ansible
-		docker
-		docker-compose
-		gcc
-		fish
-		tree-sitter
-		cmake
-		cmatrix
-		htop
-		ninja
-		nmap
-		postgresql_16
-		shellcheck
-		shfmt
-		wget
-		openssl
-		jq
-		luajit
+    ripgrep
+    neovim
+    lua-language-server
+    pipx
+    ansible-lint
+    autoflake
+    black
+    djhtml
+    djlint
+    isort
+    pgcli
+    ruff
+    tmux
+    prettier
+    prettierd
+    vtsls
+    bash-language-server
+    fish-lsp
+    pyright
+    vscode-langservers-extracted
+    yaml-language-server
+    redis
+    iredis
+    unzip
+    tree
+    rustup
+    go
+    ansible
+    docker
+    docker-compose
+    gcc
+    fish
+    tree-sitter
+    cmake
+    cmatrix
+    htop
+    ninja
+    nmap
+    postgresql_16
+    shellcheck
+    shfmt
+    wget
+    openssl
+    jq
+    luajit
     luajitPackages.luarocks
+    k3s
+    docker-language-server
+    ty
+    nixfmt
+		dockerfmt
   ];
 
-	programs.fish = {
+  programs.fish = {
     enable = true;
-		interactiveShellInit = ''
+    interactiveShellInit = ''
       # Keybinds
       bind \cy accept-autosuggestion
 
@@ -141,15 +146,22 @@
         end
       end
     '';
-	};
+  };
 
-  xdg.configFile."fish/functions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/functions";
-  xdg.configFile."fish/completions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/completions";
-  xdg.configFile."fish/conf.d".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/conf.d";
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
-  xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux";
-	xdg.configFile.".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.lesskey";
-	home.file.".less".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.less";
+  xdg.configFile."fish/functions".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/functions";
+  xdg.configFile."fish/completions".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/completions";
+  xdg.configFile."fish/conf.d".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/conf.d";
+  xdg.configFile."nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
+  xdg.configFile."tmux".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux";
+  xdg.configFile.".lesskey".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.lesskey";
+  home.file.".less".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.less";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -2,7 +2,6 @@ require("config")
 require("config.lazy")
 require("config.colors")
 vim.lsp.enable({
-	"pyright",
 	"lua_ls",
 	"bashls",
 	"vtsls",
@@ -12,4 +11,6 @@ vim.lsp.enable({
 	"yamlls",
 	"ansiblels",
 	"harper_ls",
+	"docker_ls",
+	"ty",
 })

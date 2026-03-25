@@ -13,7 +13,6 @@ require("nvim-treesitter.configs").setup({
     "c_sharp",
     "css",
     "csv",
-    "dockerfile",
     "gitignore",
     "go",
     "html",
@@ -35,7 +34,7 @@ require("nvim-treesitter.configs").setup({
   auto_install = true,
 
   -- List of parsers to ignore installing (or "all")
-  -- ignore_install = { "javascript" },
+	ignore_install = { "dockerfile" },
 
   highlight = {
     enable = true,
