@@ -62,7 +62,6 @@
 		docker
 		docker-compose
 		gcc
-		openssh
 		fish
 		tree-sitter
 		cmake
