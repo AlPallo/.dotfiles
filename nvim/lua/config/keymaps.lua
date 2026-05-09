@@ -15,6 +15,43 @@ vim.g.clipboard = {
 		["*"] = paste,
 	},
 }
+-- vim.keymap.set("n", "<leader>cp", function()
+-- 	local pwd = vim.fn.getcwd()
+-- 	vim.fn.setreg("+", pwd)
+-- end, { noremap = true, silent = true, desc = "Copy :pwd to clipboard" })
+
+vim.keymap.set("n", "<leader>cp", function()
+    local path = ""
+
+    -- 1. Check if we are in an oil.nvim buffer
+    if vim.bo.filetype == "oil" then
+
+        local ok, oil = pcall(require, "oil")
+        if ok then
+            path = oil.get_current_dir()
+        else
+            -- Fallback string manipulation just in case the API isn't available
+            path = vim.fn.expand("%:p"):gsub("^oil://", "")
+        end
+    else
+        -- 2. Grab the absolute path for standard buffers
+        path = vim.fn.expand("%:p")
+    end
+
+    -- 3. If it's an unnamed/empty buffer, fallback to pwd
+
+    if path == "" or path == nil then
+        path = vim.fn.getcwd()
+    end
+
+    -- Copy to the system clipboard
+    vim.fn.setreg("+", path)
+    
+    vim.notify("Copied: " .. path)
+end, { noremap = true, silent = true, desc = "Copy path (File, Oil, or PWD) to clipboard" })
+
+vim.keymap.set("n", "p", "p`[v`]=", { noremap = true, desc = "Paste and select" })
+vim.keymap.set("n", "P", "P`[v`]=", { noremap = true, desc = "Paste before and select" })
 local opts = { noremap = true, silent = true }
 vim.keymap.set("v", "<C-c>", '"+y', opts)
 vim.keymap.set("n", "c", '"_c', opts)
@@ -84,14 +121,12 @@ vim.keymap.set("x", "D", function()
 	vim.cmd("normal! $d")
 end, { silent = true })
 
-
 -- Jump visual lines if no count is provided, otherwise jump logical (numbered) lines
 local expr_opts = { expr = true, silent = true }
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 vim.keymap.set("n", "gj", "j", opts)
 vim.keymap.set("n", "gk", "k", opts)
-
 
 vim.keymap.set("n", "<leader>pe", function()
 	local count = vim.v.count == 0 and 1 or vim.v.count

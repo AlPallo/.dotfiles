@@ -62,11 +62,8 @@ vim.keymap.set("n", "<leader>df", function()
 end, { desc = "Telescope find dotfiles" })
 vim.keymap.set("n", "<leader>of", builtin.oldfiles, { desc = "Telescope previous buffers" })
 vim.keymap.set("n", "<leader>ps", function()
-	local input = vim.fn.input("Grep > ")
-	if input ~= "" then
-		require("fzf-lua").grep({ search = input })
-	end
-end)
+	require("fzf-lua").live_grep()
+end, { noremap = true, silent = true, desc = "Live grep (ripgrep)" })
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "TelescopePreviewerLoaded",

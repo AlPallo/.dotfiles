@@ -18,10 +18,78 @@ vim.opt.rtp:prepend(lazypath)
 return require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		build = ":TSUpdate",
-		branch = "master",
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+		dependencies = {
+			{ "andymass/vim-matchup" },
+		},
+		lazy = false,
+		config = function()
+			local parsers = {
+				"bash",
+				"c",
+				"cmake",
+				"cpp",
+				"css",
+				"dockerfile",
+				"go",
+				"graphql",
+				"html",
+				"javascript",
+				"jsdoc",
+				"json",
+				"jsonc",
+				"lua",
+				"luadoc",
+				"make",
+				"python",
+				"query",
+				"rust",
+				"scss",
+				"sql",
+				"tsx",
+				"svelte",
+				"typescript",
+				"vim",
+				"yaml",
+				"toml",
+				"markdown",
+				"markdown_inline",
+				"regex",
+				"vimdoc",
+				"nix",
+				"fish",
+				"gitcommit",
+				"git_rebase",
+				"git_config",
+				"gitignore",
+				"gitattributes",
+				"diff",
+			}
+
+			local patterns = vim.tbl_extend("force", parsers, {
+				"javascriptreact",
+				"typescriptreact",
+				"zsh",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = patterns,
+				callback = function(ev)
+					local max_filesize = 500 * 1024 -- 500 KB
+					local ok, stats = pcall(vim.uv.fs_stat, vim.fs.normalize(ev.file))
+					if ok and stats and stats.size < max_filesize then
+						vim.bo[ev.buf].syntax = "on"
+						vim.wo.foldlevel = 99
+						vim.wo.foldmethod = "expr"
+						vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+						vim.treesitter.start(ev.buf)
+					end
+				end,
+			})
+
+			vim.treesitter.language.register("bash", "zsh")
 		end,
 	},
 	{
@@ -47,9 +115,10 @@ return require("lazy").setup({
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/nvim-cmp",
+			"saghen/blink.lib"
 		},
 		run = "cargo build --release",
-		build = "cargo build --release",
+		build = function() require('blink.cmp').build():wait(60000) end
 	},
 	{
 		"ibhagwan/fzf-lua",

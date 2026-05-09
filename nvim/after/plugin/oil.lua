@@ -3,6 +3,10 @@ local actions = require("oil.actions")
 
 oil.setup({
 	default_file_explorer = true,
+	  columns = {
+    "icon",
+    "mtime",
+  },
 	-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
 	delete_to_trash = false,
 	-- Skip the confirmation popup for simple operations (:help
@@ -50,6 +54,13 @@ oil.setup({
 		end,
 		-- This function defines what will never be shown, even when `show_hidden` is set
 		is_always_hidden = function(name, bufnr)
+			local always_hide = {
+				["__pycache__"] = true,
+			}
+			if always_hide[name] then
+				return true
+			end
+
 			return false
 		end,
 		-- Sort file names with numbers in a more intuitive order for humans.
@@ -61,7 +72,7 @@ oil.setup({
 			-- sort order can be "asc" or "desc"
 			-- see :help oil-columns to see which columns are sortable
 			{ "type", "asc" },
-			{ "name", "asc" },
+			{ "mtime", "desc" },
 		},
 		-- Customize the highlight group for the file name
 		highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)

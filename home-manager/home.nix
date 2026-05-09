@@ -24,6 +24,7 @@
   ];
   # Packages that should be installed to the user profile.
 
+
   home.packages = with pkgs; [
     (python314.withPackages (
       ps: with ps; [
@@ -32,12 +33,12 @@
         keyrings-alt
       ]
     ))
+    neovim
     fzf
     git
     nodejs_25
     fd
     ripgrep
-    neovim
     lua-language-server
     pipx
     ansible-lint
@@ -65,7 +66,6 @@
     ansible
     docker
     docker-compose
-    gcc
     fish
     tree-sitter
     cmake
@@ -87,11 +87,22 @@
     nixfmt
     dockerfmt
     sqls
-		gitlab-ci-ls
+    gitlab-ci-ls
+    claude-code
+    feh
+		cmatrix
+		lolcat
+		lavat
+		mycli
   ];
 
   programs.fish = {
     enable = true;
+
+		shellAliases = {
+      mycli = "mycli --myclirc /home/alex/.config/mycli/config";
+    };
+
     interactiveShellInit = ''
       # Keybinds
       bind \cy accept-autosuggestion
@@ -152,6 +163,8 @@
           tmux new -s main
         end
       end
+
+			fzf --fish | source
     '';
   };
 
