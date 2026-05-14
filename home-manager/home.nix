@@ -24,6 +24,7 @@
   ];
   # Packages that should be installed to the user profile.
 
+	targets.genericLinux.enable = true;
 
   home.packages = with pkgs; [
     (python314.withPackages (
@@ -33,6 +34,8 @@
         keyrings-alt
       ]
     ))
+		nerd-fonts.caskaydia-cove
+		alacritty
     neovim
     fzf
     git
@@ -157,6 +160,9 @@
 
       # Tmux auto-start
       if not set -q TMUX
+
+				set -gx SHELL (command -v fish)
+
         if tmux has-session 2>/dev/null
           tmux attach
         else
@@ -182,6 +188,49 @@
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.lesskey";
   home.file.".less".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.less";
+
+	programs.alacritty = {
+		enable = true;
+		settings = {
+			window = {
+				title = "Alacritty";
+				dynamic_title = false;
+			};
+			terminal = {
+                shell = "fish";
+            };
+			
+			scrolling = {
+				history = 100000;
+			};
+			
+			font = {
+				normal = { family = "CaskaydiaCove Nerd Font"; style = "SemiBold"; };
+				bold = { family = "CaskaydiaCove Nerd Font"; style = "Bold"; };
+				italic = { family = "CaskaydiaCove Nerd Font"; style = "SemiBoldItalic"; };
+				bold_italic = { family = "CaskaydiaCove Nerd Font"; style = "BoldItalic"; };
+				size = 10.5;
+				offset = { x = 1; y = 0; };
+			};
+			
+			mouse = {
+				hide_when_typing = true;
+			};
+			
+			cursor = {
+				style = { blinking = "Always"; };
+				blink_interval = 450;
+				blink_timeout = 0;
+			};
+			
+			keyboard = {
+				bindings = [
+					{ key = "V"; mods = "Control"; action = "Paste"; }
+					{ key = "Return"; mode = "Vi"; action = "ToggleViMode"; }
+				];
+			};
+		};
+	};
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

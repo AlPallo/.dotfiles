@@ -112,12 +112,12 @@ return require("lazy").setup({
 	},
 	{
 		"saghen/blink.cmp",
+		version = "*",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/nvim-cmp",
 			"saghen/blink.lib"
 		},
-		run = "cargo build --release",
 		build = function() require('blink.cmp').build():wait(60000) end
 	},
 	{
