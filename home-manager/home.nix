@@ -97,6 +97,12 @@
 		lolcat
 		lavat
 		mycli
+    river
+    river-bsp-layout
+    waybar
+    fuzzel
+    foot
+    xwayland-satellite
   ];
 
   programs.fish = {
@@ -184,6 +190,14 @@
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
   xdg.configFile."tmux".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux";
+  xdg.configFile."river".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/river";
+  xdg.configFile."waybar".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/waybar";
+  xdg.configFile."fuzzel".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fuzzel";
+  xdg.configFile."foot".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/foot";
   xdg.configFile.".lesskey".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/lesskey/.lesskey";
   home.file.".less".source =

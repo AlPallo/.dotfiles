@@ -10,6 +10,8 @@ dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 Alt="Mod1"
 
+riverctl keyboard-layout -options "ctrl:nocaps,custom(kpenter)" us
+
 riverctl spawn "$HOME/.config/river/launch_waybar.sh"
 
 riverctl default-layout bsp-layout
