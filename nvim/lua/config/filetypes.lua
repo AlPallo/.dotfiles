@@ -4,6 +4,8 @@ vim.filetype.add({
 	},
 })
 
+vim.treesitter.language.register("yaml", "yaml.ansible")
+
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = { "*.jinja", "*.j2" },
 	callback = function(args)

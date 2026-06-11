@@ -39,11 +39,11 @@
     neovim
     fzf
     git
-    nodejs_25
+    nodejs_26
     fd
     ripgrep
     lua-language-server
-    pipx
+    uv
     ansible-lint
     autoflake
     black
@@ -67,6 +67,7 @@
     rustup
     go
     ansible
+    ansible-language-server
     docker
     docker-compose
     fish
@@ -76,7 +77,7 @@
     htop
     ninja
     nmap
-    postgresql_16
+    postgresql
     shellcheck
     shfmt
     wget
