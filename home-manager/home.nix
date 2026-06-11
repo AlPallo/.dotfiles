@@ -103,6 +103,7 @@
     fuzzel
     foot
     xwayland-satellite
+		net-tools
   ];
 
   programs.fish = {
@@ -115,6 +116,7 @@
     interactiveShellInit = ''
       # Keybinds
       bind \cy accept-autosuggestion
+			set -g fish_key_bindings fish_vi_key_bindings
 
       # Git
       set -g __fish_git_prompt_show_informative_status 1
